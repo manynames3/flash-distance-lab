@@ -151,7 +151,7 @@
     stage.style.setProperty("--beam-alpha", beamAlpha.toFixed(3));
     stage.style.setProperty("--subject-light", subjectLight.toFixed(3));
 
-    const meterPosition = clamp(50 + stops * 10.5, 2, 98);
+    const meterPosition = clamp(50 + stops * 12.5, 0, 100);
     meterNeedle.style.left = `${meterPosition}%`;
     meterFill.style.width = `${meterPosition}%`;
 

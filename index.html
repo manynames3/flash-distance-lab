@@ -61,14 +61,26 @@
               </div>
             </div>
 
-            <div class="meter-row" aria-label="Exposure meter">
-              <span>-4</span>
-              <div class="meter">
-                <div class="meter-fill" id="meterFill"></div>
-                <div class="meter-needle" id="meterNeedle"></div>
-                <div class="meter-midline"></div>
+            <div class="meter-row" aria-label="Exposure meter from minus four to plus four stops">
+              <div class="meter-stack">
+                <div class="meter">
+                  <div class="meter-fill" id="meterFill"></div>
+                  <div class="meter-ticks" aria-hidden="true"></div>
+                  <div class="meter-needle" id="meterNeedle"></div>
+                  <div class="meter-midline"></div>
+                </div>
+                <div class="meter-stop-scale" aria-hidden="true">
+                  <span>-4</span>
+                  <span>-3</span>
+                  <span>-2</span>
+                  <span>-1</span>
+                  <span>0</span>
+                  <span>+1</span>
+                  <span>+2</span>
+                  <span>+3</span>
+                  <span>+4</span>
+                </div>
               </div>
-              <span>+4</span>
             </div>
           </section>
 
