@@ -6,6 +6,8 @@
   const subjectX = 80;
   const headOffset = 5.6;
   const percentPerFoot = 4.35;
+  // 30-degree full beam spread converted into the stage's 1672:941 coordinate space.
+  const beamSpreadRatio = 0.952;
 
   const powerLabels = {
     "-7": "1/128",
@@ -140,6 +142,7 @@
     stage.style.setProperty("--flash-x", `${flashX}%`);
     stage.style.setProperty("--light-head-x", `${lightHeadX}%`);
     stage.style.setProperty("--beam-length", `${headGap}%`);
+    stage.style.setProperty("--beam-spread", `${headGap * beamSpreadRatio}%`);
     stage.style.setProperty("--distance-left", `${lightHeadX}%`);
     stage.style.setProperty("--distance-width", `${headGap}%`);
     stage.style.setProperty("--beam-alpha", beamAlpha.toFixed(3));
