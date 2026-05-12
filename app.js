@@ -3,12 +3,9 @@
   const referencePowerStop = -4;
   const referencePower = Math.pow(2, referencePowerStop);
   const baseAperture = 5.6;
-  const distanceMin = 2;
-  const distanceMax = 16;
-  const subjectX = 78;
+  const subjectX = 80;
   const headOffset = 5.6;
-  const minHeadGap = 10;
-  const maxHeadGap = 57;
+  const percentPerFoot = 4.35;
 
   const powerLabels = {
     "-7": "1/128",
@@ -132,8 +129,7 @@
       matchPowerNote.textContent = `${formatStops(neededPowerStops - referencePowerStop)} from reference`;
     }
 
-    const distanceProgress = (distance - distanceMin) / (distanceMax - distanceMin);
-    const headGap = minHeadGap + distanceProgress * (maxHeadGap - minHeadGap);
+    const headGap = distance * percentPerFoot;
     const lightHeadX = subjectX - headGap;
     const flashX = lightHeadX - headOffset;
     const exposureVisual = clamp((stops + 5) / 9, 0.05, 1);
