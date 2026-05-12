@@ -17,7 +17,6 @@
   --beam-length: 20%;
   --distance-left: 58%;
   --distance-width: 20%;
-  --rig-scale: 0.92;
 }
 
 * {
@@ -291,8 +290,7 @@ h1 {
   z-index: 3;
   width: clamp(4.3rem, 7.2vw, 6.3rem);
   height: 68%;
-  transform: translateX(-50%) scale(var(--rig-scale));
-  transform-origin: 50% 100%;
+  transform: translateX(-50%);
   transition: left 160ms ease-out;
   filter:
     drop-shadow(0 0 calc(0.5rem + var(--subject-light) * 1.3rem) rgba(255, 255, 255, calc(var(--beam-alpha) * 0.35)))

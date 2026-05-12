@@ -136,7 +136,6 @@
     const headGap = minHeadGap + distanceProgress * (maxHeadGap - minHeadGap);
     const lightHeadX = subjectX - headGap;
     const flashX = lightHeadX - headOffset;
-    const rigScale = 0.96 - distanceProgress * 0.1;
     const exposureVisual = clamp((stops + 5) / 9, 0.05, 1);
     const powerVisual = clamp((powerStop + 7) / 7, 0, 1);
     const beamAlpha = clamp(0.14 + powerVisual * 0.35 + exposureVisual * 0.24, 0.12, 0.78);
@@ -147,7 +146,6 @@
     stage.style.setProperty("--beam-length", `${headGap}%`);
     stage.style.setProperty("--distance-left", `${lightHeadX}%`);
     stage.style.setProperty("--distance-width", `${headGap}%`);
-    stage.style.setProperty("--rig-scale", rigScale.toFixed(3));
     stage.style.setProperty("--beam-alpha", beamAlpha.toFixed(3));
     stage.style.setProperty("--subject-light", subjectLight.toFixed(3));
 
