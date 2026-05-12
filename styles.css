@@ -194,21 +194,30 @@ h1 {
 
 .stage {
   position: relative;
-  height: 29rem;
+  height: clamp(19rem, 34vw, 29rem);
   overflow: hidden;
-  background:
-    radial-gradient(circle at var(--flash-x) 47%, rgba(255, 190, 80, calc(var(--beam-alpha) * 0.46)), transparent 15rem),
-    linear-gradient(180deg, #e7eaeb 0%, #cdd2d2 58%, #b5aaa0 59%, #8d8176 100%);
+  background: #2c2c2c;
 }
 
-.background-grid {
+.stage-photo,
+.photo-vignette {
   position: absolute;
   inset: 0;
+}
+
+.stage-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.photo-vignette {
+  z-index: 1;
+  pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(20, 20, 22, 0.06) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(20, 20, 22, 0.05) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  opacity: 0.36;
+    radial-gradient(circle at var(--flash-x) 28%, rgba(255, 255, 255, calc(var(--beam-alpha) * 0.35)), transparent 17rem),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.24), transparent 28%, transparent 78%, rgba(0, 0, 0, 0.18));
 }
 
 .floor {
@@ -220,26 +229,31 @@ h1 {
     linear-gradient(180deg, rgba(90, 80, 70, 0.2), rgba(66, 59, 54, 0.62));
 }
 
-.light-cone {
+.photo-light-cone {
   position: absolute;
-  left: var(--flash-x);
-  top: 18%;
-  width: var(--beam-width);
-  height: 54%;
-  clip-path: polygon(0 44%, 100% 8%, 100% 92%, 0 56%);
-  background: linear-gradient(90deg, rgba(255, 210, 110, 0.92), rgba(255, 230, 172, 0.3) 72%, rgba(255, 246, 218, 0.08));
-  filter: blur(0.4px);
-  opacity: var(--beam-alpha);
+  left: calc(var(--flash-x) + 2.6%);
+  top: 17%;
+  z-index: 2;
+  width: calc(var(--beam-width) - 2.6%);
+  height: 58%;
+  clip-path: polygon(0 27%, 100% 5%, 100% 78%, 0 43%);
+  background:
+    radial-gradient(ellipse at 100% 45%, rgba(255, 244, 218, calc(var(--subject-light) * 0.72)), transparent 42%),
+    linear-gradient(90deg, rgba(255, 255, 255, calc(var(--beam-alpha) * 0.82)), rgba(255, 232, 180, calc(var(--beam-alpha) * 0.4)) 48%, rgba(255, 255, 255, 0.03));
+  filter: blur(3px);
+  opacity: clamp(0.18, var(--beam-alpha), 0.72);
   mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .distance-line {
   position: absolute;
+  z-index: 4;
   left: var(--flash-x);
-  bottom: 18%;
+  bottom: 11%;
   width: var(--beam-width);
   height: 2rem;
-  border-top: 2px dashed rgba(20, 20, 22, 0.48);
+  border-top: 2px dashed rgba(255, 255, 255, 0.54);
 }
 
 .distance-line::before,
@@ -248,7 +262,7 @@ h1 {
   top: -0.45rem;
   width: 2px;
   height: 0.85rem;
-  background: rgba(20, 20, 22, 0.5);
+  background: rgba(255, 255, 255, 0.64);
   content: "";
 }
 
@@ -274,6 +288,165 @@ h1 {
   font-weight: 800;
   text-align: center;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+
+.photo-light-rig {
+  position: absolute;
+  left: var(--flash-x);
+  top: 17.7%;
+  z-index: 3;
+  width: clamp(5.6rem, 9vw, 8.2rem);
+  height: 72%;
+  transform: translateX(-50%);
+  transition: left 160ms ease-out;
+  filter:
+    drop-shadow(0 0 calc(0.5rem + var(--subject-light) * 1.3rem) rgba(255, 255, 255, calc(var(--beam-alpha) * 0.35)))
+    drop-shadow(0 0.45rem 0.45rem rgba(0, 0, 0, 0.5));
+}
+
+.photo-strobe {
+  position: absolute;
+  left: 15%;
+  top: 0;
+  width: 96%;
+  height: 16%;
+}
+
+.photo-strobe-body {
+  position: absolute;
+  left: 0;
+  top: 27%;
+  width: 55%;
+  height: 34%;
+  border-radius: 999px 8px 8px 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 28%),
+    linear-gradient(90deg, #050505, #222 54%, #050505);
+  box-shadow:
+    inset 0 -0.22rem 0.35rem rgba(0, 0, 0, 0.64),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.photo-strobe-body::before {
+  position: absolute;
+  left: -4%;
+  top: -18%;
+  width: 20%;
+  height: 135%;
+  border-radius: 4px;
+  background: #080808;
+  content: "";
+}
+
+.photo-reflector {
+  position: absolute;
+  left: 47%;
+  top: 12%;
+  width: 42%;
+  height: 62%;
+  clip-path: polygon(0 33%, 92% 0, 100% 100%, 0 68%);
+  background:
+    linear-gradient(90deg, #050505, #262624 44%, #080808 70%),
+    #111;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.photo-reflector-face {
+  position: absolute;
+  left: 76%;
+  top: 5%;
+  width: 18%;
+  height: 77%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 50%, rgba(255, 255, 255, 0.86), rgba(223, 221, 212, 0.38) 42%, #111 62%);
+  box-shadow: 0 0 calc(0.7rem + var(--subject-light) * 2rem) rgba(255, 255, 255, var(--beam-alpha));
+}
+
+.photo-yoke {
+  position: absolute;
+  left: 30%;
+  top: 9.5%;
+  width: 12%;
+  height: 8%;
+  border-left: 0.22rem solid #090909;
+  border-bottom: 0.22rem solid #090909;
+  border-radius: 0 0 0 8px;
+}
+
+.photo-stand {
+  position: absolute;
+  left: 32%;
+  top: 12%;
+  width: 0.36rem;
+  height: 68%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #050505, #2a2a2a 48%, #030303);
+  box-shadow:
+    0.1rem 0 0.22rem rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+
+.stand-collar {
+  position: absolute;
+  left: 50%;
+  width: 1.15rem;
+  height: 0.55rem;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: linear-gradient(180deg, #2b2b2b, #050505);
+  box-shadow: 0 0.04rem 0 rgba(255, 255, 255, 0.1);
+}
+
+.collar-top {
+  top: 18%;
+}
+
+.collar-mid {
+  top: 43%;
+}
+
+.collar-low {
+  top: 72%;
+}
+
+.photo-tripod {
+  position: absolute;
+  left: 32%;
+  bottom: 0.5%;
+  width: 0.32rem;
+  height: 23%;
+  transform: translateX(-50%);
+  background: #050505;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.photo-tripod::before,
+.photo-tripod::after,
+.photo-tripod span {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0.25rem;
+  height: 125%;
+  transform-origin: bottom center;
+  border-radius: 999px;
+  background: #050505;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  content: "";
+}
+
+.photo-tripod::before {
+  transform: translateX(-50%) rotate(43deg);
+}
+
+.photo-tripod::after {
+  transform: translateX(-50%) rotate(-48deg);
+}
+
+.photo-tripod span {
+  transform: translateX(-50%) rotate(10deg);
 }
 
 .flash-rig {
@@ -727,7 +900,7 @@ h2 {
   }
 
   .stage {
-    height: 25rem;
+    min-height: 18rem;
   }
 
   .subject {
@@ -759,7 +932,7 @@ h2 {
   }
 
   .stage {
-    height: 22rem;
+    min-height: 16rem;
   }
 
   .subject {

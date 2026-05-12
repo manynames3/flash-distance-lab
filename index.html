@@ -9,7 +9,7 @@
   <body>
     <main>
       <section class="lab-hero" aria-labelledby="page-title">
-        <img class="hero-photo" src="assets/studio-flash-hero.png" alt="Studio portrait setup with a flash on a light stand and a subject.">
+        <img class="hero-photo" src="assets/studio-subject-background.png" alt="Studio portrait subject seated on a stool in a gray studio.">
         <div class="hero-wash" aria-hidden="true"></div>
 
         <header class="topbar">
@@ -36,30 +36,29 @@
 
           <section class="simulator" aria-label="Interactive flash distance simulator">
             <div class="stage" id="stage">
-              <div class="background-grid" aria-hidden="true"></div>
-              <div class="light-cone" aria-hidden="true"></div>
+              <img class="stage-photo" src="assets/studio-subject-background.png" alt="Studio portrait subject seated on a stool in a gray studio.">
+              <div class="photo-vignette" aria-hidden="true"></div>
+              <div class="photo-light-cone" aria-hidden="true"></div>
               <div class="distance-line" aria-hidden="true">
                 <span id="distanceBadge">4.0 ft</span>
               </div>
 
-              <div class="flash-rig" aria-label="Flash position">
-                <div class="flash-head">
-                  <span class="flash-face"></span>
+              <div class="photo-light-rig" aria-label="Movable light and stand">
+                <div class="photo-strobe">
+                  <span class="photo-strobe-body"></span>
+                  <span class="photo-reflector"></span>
+                  <span class="photo-reflector-face"></span>
                 </div>
-                <div class="flash-stand">
+                <div class="photo-yoke"></div>
+                <div class="photo-stand">
+                  <span class="stand-collar collar-top"></span>
+                  <span class="stand-collar collar-mid"></span>
+                  <span class="stand-collar collar-low"></span>
+                </div>
+                <div class="photo-tripod">
                   <span></span>
                 </div>
               </div>
-
-              <div class="subject" aria-label="Portrait subject">
-                <div class="subject-head">
-                  <span class="subject-highlight"></span>
-                </div>
-                <div class="subject-body"></div>
-                <div class="subject-shadow"></div>
-              </div>
-
-              <div class="floor" aria-hidden="true"></div>
             </div>
 
             <div class="meter-row" aria-label="Exposure meter">

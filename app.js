@@ -5,9 +5,9 @@
   const baseAperture = 5.6;
   const distanceMin = 2;
   const distanceMax = 16;
-  const subjectX = 78;
-  const minGap = 20;
-  const maxGap = 66;
+  const subjectX = 82;
+  const minGap = 22;
+  const maxGap = 64;
 
   const powerLabels = {
     "-7": "1/128",
