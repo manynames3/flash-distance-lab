@@ -5,9 +5,10 @@
   const baseAperture = 5.6;
   const distanceMin = 2;
   const distanceMax = 16;
-  const subjectX = 82;
-  const minGap = 22;
-  const maxGap = 64;
+  const subjectX = 78;
+  const headOffset = 5.6;
+  const minHeadGap = 10;
+  const maxHeadGap = 57;
 
   const powerLabels = {
     "-7": "1/128",
@@ -132,23 +133,23 @@
     }
 
     const distanceProgress = (distance - distanceMin) / (distanceMax - distanceMin);
-    const gap = minGap + distanceProgress * (maxGap - minGap);
-    const flashX = subjectX - gap;
+    const headGap = minHeadGap + distanceProgress * (maxHeadGap - minHeadGap);
+    const lightHeadX = subjectX - headGap;
+    const flashX = lightHeadX - headOffset;
+    const rigScale = 0.96 - distanceProgress * 0.1;
     const exposureVisual = clamp((stops + 5) / 9, 0.05, 1);
     const powerVisual = clamp((powerStop + 7) / 7, 0, 1);
     const beamAlpha = clamp(0.14 + powerVisual * 0.35 + exposureVisual * 0.24, 0.12, 0.78);
     const subjectLight = clamp(0.1 + exposureVisual * 0.9, 0.08, 1);
-    const brightness = clamp(0.56 + exposureVisual * 0.84, 0.55, 1.58);
-    const shadowAlpha = clamp(0.52 - exposureVisual * 0.34, 0.14, 0.54);
-    const clipWarning = clamp((stops - 2.35) / 1.8, 0, 0.78);
 
     stage.style.setProperty("--flash-x", `${flashX}%`);
-    stage.style.setProperty("--beam-width", `${gap}%`);
+    stage.style.setProperty("--light-head-x", `${lightHeadX}%`);
+    stage.style.setProperty("--beam-length", `${headGap}%`);
+    stage.style.setProperty("--distance-left", `${lightHeadX}%`);
+    stage.style.setProperty("--distance-width", `${headGap}%`);
+    stage.style.setProperty("--rig-scale", rigScale.toFixed(3));
     stage.style.setProperty("--beam-alpha", beamAlpha.toFixed(3));
     stage.style.setProperty("--subject-light", subjectLight.toFixed(3));
-    stage.style.setProperty("--subject-brightness", brightness.toFixed(3));
-    stage.style.setProperty("--subject-shadow-alpha", shadowAlpha.toFixed(3));
-    stage.style.setProperty("--clip-warning", clipWarning.toFixed(3));
 
     const meterPosition = clamp(50 + stops * 10.5, 2, 98);
     meterNeedle.style.left = `${meterPosition}%`;
