@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flash Distance Lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <section class="lab-hero" aria-labelledby="page-title">
+        <img class="hero-photo" src="assets/studio-flash-hero.png" alt="Studio portrait setup with a flash on a light stand and a subject.">
+        <div class="hero-wash" aria-hidden="true"></div>
+
+        <header class="topbar">
+          <span class="brand-mark">Flash Distance Lab</span>
+          <span class="law-mark">power / distance<sup>2</sup></span>
+        </header>
+
+        <div class="workbench">
+          <section class="lab-copy">
+            <p class="eyebrow">Inverse-square flash exposure</p>
+            <h1 id="page-title">Distance doubles. Light becomes one quarter.</h1>
+            <p class="lead">
+              Exposure at the subject is proportional to flash power divided by distance squared.
+              Add two stops of power for each doubling of distance to hold the same exposure.
+            </p>
+            <div class="formula-line" aria-label="Flash exposure formula">
+              <span>subject light</span>
+              <strong>=</strong>
+              <span>flash power</span>
+              <strong>/</strong>
+              <span>distance<sup>2</sup></span>
+            </div>
+          </section>
+
+          <section class="simulator" aria-label="Interactive flash distance simulator">
+            <div class="stage" id="stage">
+              <div class="background-grid" aria-hidden="true"></div>
+              <div class="light-cone" aria-hidden="true"></div>
+              <div class="distance-line" aria-hidden="true">
+                <span id="distanceBadge">4.0 ft</span>
+              </div>
+
+              <div class="flash-rig" aria-label="Flash position">
+                <div class="flash-head">
+                  <span class="flash-face"></span>
+                </div>
+                <div class="flash-stand">
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="subject" aria-label="Portrait subject">
+                <div class="subject-head">
+                  <span class="subject-highlight"></span>
+                </div>
+                <div class="subject-body"></div>
+                <div class="subject-shadow"></div>
+              </div>
+
+              <div class="floor" aria-hidden="true"></div>
+            </div>
+
+            <div class="meter-row" aria-label="Exposure meter">
+              <span>-4</span>
+              <div class="meter">
+                <div class="meter-fill" id="meterFill"></div>
+                <div class="meter-needle" id="meterNeedle"></div>
+                <div class="meter-midline"></div>
+              </div>
+              <span>+4</span>
+            </div>
+          </section>
+
+          <aside class="controls" aria-label="Flash controls">
+            <div class="control-group">
+              <div class="control-label">
+                <label for="distanceRange">Distance</label>
+                <output id="distanceValue" for="distanceRange">4.0 ft</output>
+              </div>
+              <input id="distanceRange" type="range" min="2" max="16" step="0.25" value="4" aria-describedby="distanceHint">
+              <div class="range-ticks" id="distanceHint" aria-hidden="true">
+                <span>2 ft</span>
+                <span>4 ft</span>
+                <span>8 ft</span>
+                <span>16 ft</span>
+              </div>
+              <div class="quick-set" aria-label="Distance presets">
+                <button type="button" data-distance="2">2</button>
+                <button type="button" data-distance="4" class="active">4</button>
+                <button type="button" data-distance="8">8</button>
+                <button type="button" data-distance="16">16</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <label for="powerRange">Flash power</label>
+                <output id="powerValue" for="powerRange">1/16</output>
+              </div>
+              <input id="powerRange" type="range" min="-7" max="0" step="1" value="-4">
+              <div class="power-scale" aria-hidden="true">
+                <span>1/128</span>
+                <span>1/16</span>
+                <span>1/1</span>
+              </div>
+              <div class="power-ladder" id="powerLadder" aria-label="Flash power presets">
+                <button type="button" data-power="-7">1/128</button>
+                <button type="button" data-power="-6">1/64</button>
+                <button type="button" data-power="-5">1/32</button>
+                <button type="button" data-power="-4" class="active">1/16</button>
+                <button type="button" data-power="-3">1/8</button>
+                <button type="button" data-power="-2">1/4</button>
+                <button type="button" data-power="-1">1/2</button>
+                <button type="button" data-power="0">1/1</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="readout-band" aria-label="Current exposure readout">
+        <div class="readout-grid">
+          <article class="readout">
+            <span>Subject light</span>
+            <strong id="relativeLight">1.00x</strong>
+            <small>relative to 4 ft at 1/16 power</small>
+          </article>
+          <article class="readout">
+            <span>Exposure shift</span>
+            <strong id="stopShift">0.0 stops</strong>
+            <small id="exposureTone">same as reference</small>
+          </article>
+          <article class="readout">
+            <span>Meter aperture</span>
+            <strong id="apertureValue">f/5.6</strong>
+            <small>same ISO and shutter speed</small>
+          </article>
+          <article class="readout">
+            <span>Power to match reference</span>
+            <strong id="matchPower">1/16</strong>
+            <small id="matchPowerNote">at the selected distance</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="law-band" aria-labelledby="law-title">
+        <div class="law-heading">
+          <p class="eyebrow">Distance ratio</p>
+          <h2 id="law-title">Every doubling costs two stops.</h2>
+        </div>
+        <div class="law-grid">
+          <article>
+            <span>Distance x2</span>
+            <strong>1/4 light</strong>
+            <small>add x4 power, or +2 stops</small>
+          </article>
+          <article>
+            <span>Distance x4</span>
+            <strong>1/16 light</strong>
+            <small>add x16 power, or +4 stops</small>
+          </article>
+          <article>
+            <span>Distance x1/2</span>
+            <strong>x4 light</strong>
+            <small>reduce power by two stops</small>
+          </article>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        ©2026 SUPREME AI VENTURES LLC
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
