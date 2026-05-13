@@ -1,36 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flash Distance Lab</title>
+    <meta name="description" content="An interactive flash photography lab for learning the inverse-square relationship between light distance, flash power, and exposure stops.">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
-      <section class="lab-hero" aria-labelledby="page-title">
-        <img class="hero-photo" src="assets/studio-subject-background.png" alt="Studio portrait subject seated on a stool in a gray studio.">
-        <div class="hero-wash" aria-hidden="true"></div>
+    <header class="site-nav" aria-label="Primary navigation">
+      <a class="brand-mark" href="#top" aria-label="Flash Distance Lab home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        Flash Distance Lab
+      </a>
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#lab">Lab</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#trust">Trust</a>
+      </nav>
+      <a class="nav-action" href="https://github.com/manynames3/flash-distance-lab">GitHub</a>
+    </header>
 
-        <header class="topbar">
-          <span class="brand-mark">Flash Distance Lab</span>
-          <span class="law-mark">power / distance<sup>2</sup></span>
-        </header>
+    <main id="top">
+      <section class="hero-section" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Inverse-square flash exposure</p>
+          <h1 id="page-title">Learn flash falloff by moving the light.</h1>
+          <p class="hero-lede">
+            Double the distance and the subject receives one quarter of the light.
+            Use the lab to compare distance, power, stops, and aperture in one view.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#lab">Try the lab</a>
+            <a class="button button-secondary" href="https://github.com/manynames3/flash-distance-lab">View source</a>
+          </div>
+          <div class="formula-line">
+            <span>subject light</span>
+            <strong>=</strong>
+            <span>flash power</span>
+            <strong>/</strong>
+            <span>distance<sup>2</sup></span>
+          </div>
+        </div>
 
-        <div class="workbench">
-          <section class="lab-copy">
-            <p class="eyebrow">Inverse-square flash exposure</p>
-            <h1 id="page-title">Distance doubles. Light becomes one quarter.</h1>
-            <div class="formula-line" aria-label="Flash exposure formula">
-              <span>subject light</span>
-              <strong>=</strong>
-              <span>flash power</span>
-              <strong>/</strong>
-              <span>distance<sup>2</sup></span>
+        <aside class="hero-showcase" aria-label="Product preview and reference values">
+          <div class="hero-visual-card">
+            <img src="assets/studio-subject-background.png" alt="Preview of the Flash Distance Lab simulator scene.">
+            <div class="preview-wash" aria-hidden="true"></div>
+            <div class="preview-beam" aria-hidden="true"></div>
+            <div class="preview-panel" aria-hidden="true">
+              <span>Exposure shift</span>
+              <strong>0.0 stops</strong>
             </div>
-          </section>
+          </div>
+          <div class="hero-proof">
+            <article>
+              <span>Distance x2</span>
+              <strong>1/4 light</strong>
+            </article>
+            <article>
+              <span>Reference</span>
+              <strong>4 ft at 1/16</strong>
+            </article>
+            <article>
+              <span>Distance x0.5</span>
+              <strong>x4 light</strong>
+            </article>
+          </div>
+        </aside>
+      </section>
 
-          <section class="simulator" aria-label="Interactive flash distance simulator">
+      <section class="lab-shell" id="lab" aria-labelledby="lab-title">
+        <div class="section-heading lab-heading">
+          <div>
+            <p class="eyebrow">Interactive lab</p>
+            <h2 id="lab-title">Move distance and power together.</h2>
+          </div>
+          <p>
+            The scene visualizes a 30-degree beam angle, a fixed subject, and a movable light stand
+            while the meter updates exposure stops from -4 to +4.
+          </p>
+        </div>
+
+        <div class="lab-grid">
+          <div class="simulator">
             <div class="stage" id="stage">
               <img class="stage-photo" src="assets/studio-subject-background.png" alt="Studio portrait subject seated on a stool in a gray studio.">
               <div class="photo-vignette" aria-hidden="true"></div>
@@ -39,7 +92,7 @@
                 <span id="distanceBadge">4.0 ft</span>
               </div>
 
-              <div class="photo-light-rig" aria-label="Movable light and stand">
+              <div class="photo-light-rig" aria-hidden="true">
                 <div class="photo-strobe">
                   <span class="photo-strobe-body"></span>
                   <span class="photo-reflector"></span>
@@ -57,7 +110,7 @@
               </div>
             </div>
 
-            <div class="meter-row" aria-label="Exposure meter from minus four to plus four stops">
+            <div class="meter-row" aria-hidden="true">
               <div class="meter-stack">
                 <div class="meter">
                   <div class="meter-fill" id="meterFill"></div>
@@ -78,7 +131,7 @@
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
           <aside class="controls" aria-label="Flash controls">
             <div class="control-group">
@@ -93,7 +146,7 @@
                 <span>8 ft</span>
                 <span>16 ft</span>
               </div>
-              <div class="quick-set" aria-label="Distance presets">
+              <div class="quick-set" role="group" aria-label="Distance presets">
                 <button type="button" data-distance="2">2</button>
                 <button type="button" data-distance="4" class="active">4</button>
                 <button type="button" data-distance="8">8</button>
@@ -112,7 +165,7 @@
                 <span>1/16</span>
                 <span>1/1</span>
               </div>
-              <div class="power-ladder" id="powerLadder" aria-label="Flash power presets">
+              <div class="power-ladder" id="powerLadder" role="group" aria-label="Flash power presets">
                 <button type="button" data-power="-7">1/128</button>
                 <button type="button" data-power="-6">1/64</button>
                 <button type="button" data-power="-5">1/32</button>
@@ -125,37 +178,41 @@
             </div>
           </aside>
         </div>
+
+        <section class="readout-band" aria-label="Current exposure readout">
+          <div class="readout-grid">
+            <article class="readout">
+              <span>Subject light</span>
+              <strong id="relativeLight">1.00x</strong>
+              <small>relative to 4 ft at 1/16 power</small>
+            </article>
+            <article class="readout">
+              <span>Exposure shift</span>
+              <strong id="stopShift">0.0 stops</strong>
+              <small id="exposureTone">same as reference</small>
+            </article>
+            <article class="readout">
+              <span>Meter aperture</span>
+              <strong id="apertureValue">f/5.6</strong>
+              <small>same ISO and shutter speed</small>
+            </article>
+            <article class="readout">
+              <span>Power to match reference</span>
+              <strong id="matchPower">1/16</strong>
+              <small id="matchPowerNote">at the selected distance</small>
+            </article>
+          </div>
+        </section>
       </section>
 
-      <section class="readout-band" aria-label="Current exposure readout">
-        <div class="readout-grid">
-          <article class="readout">
-            <span>Subject light</span>
-            <strong id="relativeLight">1.00x</strong>
-            <small>relative to 4 ft at 1/16 power</small>
-          </article>
-          <article class="readout">
-            <span>Exposure shift</span>
-            <strong id="stopShift">0.0 stops</strong>
-            <small id="exposureTone">same as reference</small>
-          </article>
-          <article class="readout">
-            <span>Meter aperture</span>
-            <strong id="apertureValue">f/5.6</strong>
-            <small>same ISO and shutter speed</small>
-          </article>
-          <article class="readout">
-            <span>Power to match reference</span>
-            <strong id="matchPower">1/16</strong>
-            <small id="matchPowerNote">at the selected distance</small>
-          </article>
-        </div>
-      </section>
-
-      <section class="law-band" aria-labelledby="law-title">
-        <div class="law-heading">
-          <p class="eyebrow">Distance ratio</p>
-          <h2 id="law-title">Every doubling costs two stops.</h2>
+      <section class="content-section" id="lessons" aria-labelledby="problem-title">
+        <div class="section-heading">
+          <p class="eyebrow">Problem</p>
+          <h2 id="problem-title">Distance changes exposure faster than intuition.</h2>
+          <p>
+            Moving a flash farther away does more than make the light look smaller in the room.
+            Exposure falls with the square of the distance, so small setup changes can cost multiple stops.
+          </p>
         </div>
         <div class="law-grid">
           <article>
@@ -176,10 +233,144 @@
         </div>
       </section>
 
-      <footer class="site-footer">
-        ©2026 SUPREME AI VENTURES LLC
-      </footer>
+      <section class="content-section" aria-labelledby="product-title">
+        <div class="section-heading">
+          <p class="eyebrow">Product</p>
+          <h2 id="product-title">One lab, three linked views.</h2>
+          <p>
+            Distance, power, and exposure are shown together so the inverse-square relationship can be learned by changing the setup, not by memorizing a chart.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-kicker">Visual stage</span>
+            <h3>Move the light stand</h3>
+            <p>The flash travels across the studio scene while the subject remains fixed, making distance changes visible.</p>
+          </article>
+          <article>
+            <span class="feature-kicker">Exposure meter</span>
+            <h3>Read stops directly</h3>
+            <p>A -4 to +4 stop scale shows how far the current setup is from the 4 ft at 1/16 reference.</p>
+          </article>
+          <article>
+            <span class="feature-kicker">Power planner</span>
+            <h3>Match the reference</h3>
+            <p>The lab calculates the flash power needed to hold the same exposure at the selected distance.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section split-section" aria-labelledby="use-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Use cases</p>
+          <h2 id="use-title">Built for practical flash education.</h2>
+        </div>
+        <div class="text-list">
+          <article>
+            <h3>Studio practice</h3>
+            <p>Compare a close key light with a far key light before changing power on a real strobe.</p>
+          </article>
+          <article>
+            <h3>Teaching inverse square</h3>
+            <p>Show why a distance change of x2 costs two stops and why moving the light closer adds light quickly.</p>
+          </article>
+          <article>
+            <h3>Power planning</h3>
+            <p>Estimate whether the selected distance can be matched within the 1/128 to full-power range.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="architecture-title">
+        <div class="section-heading">
+          <p class="eyebrow">Architecture and features</p>
+          <h2 id="architecture-title">A small static app with transparent behavior.</h2>
+          <p>
+            The site runs in the browser with HTML, CSS, and JavaScript. The calculation is intentionally visible through the formula, readouts, and stop meter.
+          </p>
+        </div>
+        <div class="feature-grid feature-grid-four">
+          <article>
+            <span class="feature-kicker">Formula</span>
+            <h3>power / distance<sup>2</sup></h3>
+            <p>Exposure at the subject is calculated from flash power and distance squared.</p>
+          </article>
+          <article>
+            <span class="feature-kicker">Beam</span>
+            <h3>30-degree angle</h3>
+            <p>The visual beam keeps a consistent angle while distance changes.</p>
+          </article>
+          <article>
+            <span class="feature-kicker">Range</span>
+            <h3>2 ft to 16 ft</h3>
+            <p>The distance slider covers common close studio distances for learning falloff.</p>
+          </article>
+          <article>
+            <span class="feature-kicker">Power</span>
+            <h3>1/128 to 1/1</h3>
+            <p>Full-stop flash settings mirror common manual strobe controls.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section split-section" id="trust" aria-labelledby="trust-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Security and trust</p>
+          <h2 id="trust-title">No account, upload, or server required.</h2>
+          <p>
+            Flash Distance Lab is a browser-only educational tool. It does not require a sign-in, collect images, or upload camera files.
+          </p>
+        </div>
+        <div class="trust-card">
+          <ul>
+            <li>Runs as static files in the browser.</li>
+            <li>Uses a fixed educational studio visual.</li>
+            <li>Source is available on GitHub for inspection.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="integrations-title">
+        <div class="section-heading">
+          <p class="eyebrow">Integrations</p>
+          <h2 id="integrations-title">Simple publishing paths, no fake platform claims.</h2>
+          <p>
+            The project is designed for static hosting and source review. These are the real connection points used by the site.
+          </p>
+        </div>
+        <div class="integration-grid">
+          <article>
+            <span>Source</span>
+            <strong>GitHub</strong>
+            <p>Project files and history are maintained in the public repository.</p>
+          </article>
+          <article>
+            <span>Hosting</span>
+            <strong>Cloudflare Pages</strong>
+            <p>The app can deploy as a static Pages site because it has no backend runtime requirement.</p>
+          </article>
+          <article>
+            <span>Runtime</span>
+            <strong>Browser</strong>
+            <p>The simulator updates locally with JavaScript as distance and flash power change.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-section" aria-labelledby="cta-title">
+        <p class="eyebrow">Try the falloff</p>
+        <h2 id="cta-title">Set a distance, change power, and watch the stops move.</h2>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#lab">Open the lab</a>
+          <a class="button button-secondary" href="https://github.com/manynames3/flash-distance-lab">Review the code</a>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <span>©2026 SUPREME AI VENTURES LLC</span>
+      <a href="#top">Back to top</a>
+    </footer>
 
     <script src="app.js"></script>
   </body>
