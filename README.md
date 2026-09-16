@@ -47,3 +47,16 @@ Use Cloudflare Pages Git integration with these settings:
 - Build output directory: `.`
 
 Cloudflare Pages will deploy the static files from the repository root and rebuild automatically on pushes to `main`.
+
+## Android app
+
+The native Android client lives in the `android/` directory on the `android-app` branch. It uses the same inverse-square model, scene asset, stop meter, distance presets, and flash-power controls as the web simulator, implemented with platform Android views and Canvas so it has no runtime dependency on a web wrapper.
+
+To build a debug APK:
+
+```bash
+cd android
+./gradlew assembleDebug
+```
+
+The APK is written to `android/app/build/outputs/apk/debug/app-debug.apk`. Android Studio can open the `android/` directory directly.
